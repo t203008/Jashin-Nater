@@ -7,3 +7,4 @@ K=0
 while K<1:
   if st.button("次へ"):
     K+=1
+st.write(K)
