@@ -1,4 +1,4 @@
 import streamlit as st
 st.write("ジャシネーター")
-a=imput()
+a=st.imput()
 st.write(a)
