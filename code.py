@@ -1,15 +1,16 @@
-import streamlit as st
-import numpy as np 
+# モジュールの読み込み
 import pandas as pd
-import base64
-import statsmodels.formula.api as smf
-import statsmodels.api as sm
-from PIL import Image
-import matplotlib.pyplot as plt
-import japanize_matplotlib
-
-st.title("ジャシネーター")
-st.write("あなたが考えている邪神ちゃんのキャラを当てるんですの。")
-st.write("※マイナー過ぎるキャラクターは出てこない可能性があるんですの")
-
-data=pd.read_csv("Jashin-Chan")
+import streamlit as st
+import pygwalker as pyg
+# 初期設定
+st.set_page_config(layout="wide")
+# CSVファイル取得（サイドパネル）
+df = None
+with st.sidebar:
+    input = st.file_uploader("Choose a CSV file")
+    if input is not None:
+        df = pd.read_csv(input)
+# Graphic Walker 操作（メインパネル）
+if df is not None:
+    output = pyg.walk(df, env='Streamlit')
+    st.write(output)
